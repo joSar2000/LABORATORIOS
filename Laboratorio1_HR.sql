@@ -38,6 +38,7 @@ idProducto INT NOT NULL,
 idLocales INT NOT NULL,
 detalle VARCHAR (20) NOT NULL,
 precioPromocion NUMBER,
+precioUnitario NUMBER,
 CONSTRAINT PK_PRODUCTO_idProducto PRIMARY KEY (idProducto),
 CONSTRAINT FK_PRODUCTO_idLocales FOREIGN KEY (idLocales) REFERENCES LOCALES (idLocales)
 );
