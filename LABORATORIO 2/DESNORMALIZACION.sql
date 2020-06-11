@@ -1,28 +1,37 @@
-CREATE TABLE MATRICULAS (
-    idMatri int not null,
-    fecha date,
-    periodoAcademico VARCHAR(20),
-    costoCurso INT,
-    tasaAdministrativa int,
-    descuento int
-);
 
---la solucion es crear una nueva variable que es el monto total, atributo en el cual entra el costo total de la matricula con los atributos que costoCurso, tasaAdministrativa
---costoCurso y el descuento que permite establecer un solo valor en la consulta.
+--Listar el nombre, horario de atencion y tarifa de envío (tiene que ser menor o igual a 10) el barrio (tiene que ser "La Pradera" en el que se encentra un local
+/**
+----ALIAS----
+LOCALES l
+DIRECCION d
+**/
+
+SELECT 
+    l.localNombre,
+    l.horarioatencion,
+    l.tarifaEnvio, 
+    d.barrio
+FROM
+    DIRECCION d INNER JOIN LOCALES l ON d.idLocales = l.idLocales
+WHERE
+    d.barrio = 'La Pradera' AND
+    l.tarifaenvio <= 10
+;
 
 
---nueva tabla desnormalizada
-CREATE TABLE MATRICULAS (
-    idMatri int not null,
-    fecha date,
-    periodoAcademico VARCHAR(20),
-    costoCurso INT,
-    tasaAdministrativa int,
-    descuento int,
-    montoTotal double
-    --montoTotal = ( costoCurso + tasaAdministrativa - descuento)  
-);
-
---nueva consulta
-Select idMatri, fecha, estudiante, periodoAcademico, montoTotal AS "importe"
-from MATRICULAS
+--Listar el nombre, horario de atención y tarifa de envío (tiene que ser menor o igual a 10) el barrio (tiene que ser "La Pradera" en el que se encentra un local
+/**
+----ALIAS----
+DIRECCION d
+**/
+SELECT 
+    d.localNombre,
+    d.horarioAtencion,
+    d.tarifaEnvio,
+    d.barrio
+FROM
+    DIRECCION d
+    WHERE
+        d.barrio = 'La Pradera' AND
+        d.tarifaEnvio <=10
+;
